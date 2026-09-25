@@ -10,33 +10,144 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppBuildRouteImport } from './routes/app.build'
+import { Route as AppPracticeRouteImport } from './routes/app.practice'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppProgressRouteImport } from './routes/app.progress'
+import { Route as AppResourcesRouteImport } from './routes/app.resources'
+import { Route as AppSessionRouteImport } from './routes/app.session'
+import { Route as AppSubjectsRouteImport } from './routes/app.subjects'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBuildRoute = AppBuildRouteImport.update({
+  id: '/build',
+  path: '/build',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPracticeRoute = AppPracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProgressRoute = AppProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppResourcesRoute = AppResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSessionRoute = AppSessionRouteImport.update({
+  id: '/session',
+  path: '/session',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSubjectsRoute = AppSubjectsRouteImport.update({
+  id: '/subjects',
+  path: '/subjects',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/build': typeof AppBuildRoute
+  '/app/practice': typeof AppPracticeRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/progress': typeof AppProgressRoute
+  '/app/resources': typeof AppResourcesRoute
+  '/app/session': typeof AppSessionRoute
+  '/app/subjects': typeof AppSubjectsRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/build': typeof AppBuildRoute
+  '/app/practice': typeof AppPracticeRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/progress': typeof AppProgressRoute
+  '/app/resources': typeof AppResourcesRoute
+  '/app/session': typeof AppSessionRoute
+  '/app/subjects': typeof AppSubjectsRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/build': typeof AppBuildRoute
+  '/app/practice': typeof AppPracticeRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/progress': typeof AppProgressRoute
+  '/app/resources': typeof AppResourcesRoute
+  '/app/session': typeof AppSessionRoute
+  '/app/subjects': typeof AppSubjectsRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/build'
+    | '/app/practice'
+    | '/app/profile'
+    | '/app/progress'
+    | '/app/resources'
+    | '/app/session'
+    | '/app/subjects'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/app/build'
+    | '/app/practice'
+    | '/app/profile'
+    | '/app/progress'
+    | '/app/resources'
+    | '/app/session'
+    | '/app/subjects'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/build'
+    | '/app/practice'
+    | '/app/profile'
+    | '/app/progress'
+    | '/app/resources'
+    | '/app/session'
+    | '/app/subjects'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +159,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/build': {
+      id: '/app/build'
+      path: '/build'
+      fullPath: '/app/build'
+      preLoaderRoute: typeof AppBuildRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/practice': {
+      id: '/app/practice'
+      path: '/practice'
+      fullPath: '/app/practice'
+      preLoaderRoute: typeof AppPracticeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/progress': {
+      id: '/app/progress'
+      path: '/progress'
+      fullPath: '/app/progress'
+      preLoaderRoute: typeof AppProgressRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/resources': {
+      id: '/app/resources'
+      path: '/resources'
+      fullPath: '/app/resources'
+      preLoaderRoute: typeof AppResourcesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/session': {
+      id: '/app/session'
+      path: '/session'
+      fullPath: '/app/session'
+      preLoaderRoute: typeof AppSessionRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/subjects': {
+      id: '/app/subjects'
+      path: '/subjects'
+      fullPath: '/app/subjects'
+      preLoaderRoute: typeof AppSubjectsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppBuildRoute: typeof AppBuildRoute
+  AppPracticeRoute: typeof AppPracticeRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppProgressRoute: typeof AppProgressRoute
+  AppResourcesRoute: typeof AppResourcesRoute
+  AppSessionRoute: typeof AppSessionRoute
+  AppSubjectsRoute: typeof AppSubjectsRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppBuildRoute: AppBuildRoute,
+  AppPracticeRoute: AppPracticeRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppProgressRoute: AppProgressRoute,
+  AppResourcesRoute: AppResourcesRoute,
+  AppSessionRoute: AppSessionRoute,
+  AppSubjectsRoute: AppSubjectsRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
